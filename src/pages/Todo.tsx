@@ -1,7 +1,8 @@
 import React from 'react';
 import TodoList from '../components/TodoList';
-import AddTodo from '../components/AddTodo';
+import AddTodoModal from '../components/AddTodo';
 import { useTodo } from '../providers/Todo';
+import Search from '../components/Search';
 
 const TodoPage: React.FC = () => {
   const { todos, addTodo, removeTodo, modalIsOpen, setModalIsOpen } = useTodo();
@@ -29,12 +30,13 @@ const TodoPage: React.FC = () => {
           </svg>
         </button>
       </div>
-      <AddTodo
+      <Search />
+      <TodoList todos={todos} removeTodo={removeTodo} />
+      <AddTodoModal
         addTodo={addTodo}
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
       />
-      <TodoList todos={todos} removeTodo={removeTodo} />
     </div>
   );
 };

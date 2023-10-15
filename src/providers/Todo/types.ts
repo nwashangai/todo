@@ -4,6 +4,7 @@ export interface TodoContextType {
   removeTodo: (index: number) => void;
   modalIsOpen: boolean;
   setModalIsOpen: (isOpen: boolean) => void;
+  search: (value: string) => void;
 }
 
 export interface TodoProviderProps {
