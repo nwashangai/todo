@@ -13,19 +13,24 @@ export const useTodo = () => {
 };
 
 const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<string[]>(
+    JSON.parse(localStorage.getItem('todos') || '[]')
+  );
   const [searchString, setSearchString] = useState<string>('');
   const filteredTodo = useFilter(todos, searchString);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const addTodo = (newTodo: string) => {
-    setTodos([...todos, newTodo]);
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
     setModalIsOpen(false);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   };
 
   const removeTodo = (index: number) => {
     const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
   };
 
   return (
