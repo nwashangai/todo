@@ -7,11 +7,10 @@ const Filter: React.FC = () => {
     <div className="relative w-full md:max-w-[200px]">
       <select
         onChange={(e) => filterByCategory(e.target.value)}
+        defaultValue=""
         className="w-full border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring focus:border-blue-500 appearance-none"
       >
-        <option value="" selected>
-          All Categories
-        </option>
+        <option value="">All Categories</option>
         <option value="Work">Work</option>
         <option value="Personal">Personal</option>
         <option value="Shopping">Shopping</option>

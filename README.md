@@ -27,3 +27,15 @@ $ cd todo
 $ npm install or yarn install
 $ npm start or yarn start
 ```
+
+To run test written for this project, run the following commands
+
+```
+$ npm run test or yarn test
+```
+
+To see coverage of test run the command
+
+```
+$ npm run test -- --coverage or yarn test -- --coverage
+```

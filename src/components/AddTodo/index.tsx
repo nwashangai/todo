@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { FormEventHandler, useRef } from 'react';
 import Modal from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
 import { AddTodoProps, ModalStyles } from './types';
@@ -37,7 +37,8 @@ const AddTodo: React.FC<AddTodoProps> = ({
   const ref = useRef<HTMLInputElement>(null);
   const selectRef = useRef<HTMLSelectElement>(null);
 
-  const handleAddTodo = () => {
+  const handleAddTodo: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
     const value = ref.current?.value;
     const category = selectRef.current?.value;
 
@@ -57,40 +58,41 @@ const AddTodo: React.FC<AddTodoProps> = ({
       onRequestClose={() => setModalIsOpen(false)}
       contentLabel="Add Todo Modal"
       style={customStyles}
+      ariaHideApp={false}
     >
       <h2 className="text-2xl font-bold mb-4">Add Todo</h2>
-      <input
-        ref={ref}
-        className="p-2 border rounded w-full mb-2"
-        placeholder="Add a new todo"
-      />
-      <label htmlFor="cateegory" className="text-[#808080]">
-        Select Category:
-      </label>
-      <select
-        name="cateegory"
-        ref={selectRef}
-        className="w-full border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring focus:border-blue-500"
-      >
-        <option value="">select-category</option>
-        <option value="Work">Work</option>
-        <option value="Personal">Personal</option>
-        <option value="Shopping">Shopping</option>
-      </select>
-      <div className="flex w-full">
-        <button
-          className="flex justify-center items-center gap-3 mt-3 md:mt-0 w-full rounded-md bg-blue-500 text-white p-2"
-          onClick={handleAddTodo}
+      <form onSubmit={handleAddTodo}>
+        <input
+          ref={ref}
+          className="p-2 border rounded w-full mb-2"
+          placeholder="Add a new todo"
+        />
+        <label htmlFor="category" className="text-[#808080]">
+          Select Category:
+        </label>
+        <select
+          name="category"
+          id="category"
+          ref={selectRef}
+          className="w-full border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring focus:border-blue-500"
         >
-          Add
-        </button>
-        <button
-          className="flex justify-center items-center gap-3 m-auto mt-3 md:mt-0 w-full rounded-md bg-gray-500 text-white p-2 ml-2"
-          onClick={() => setModalIsOpen(false)}
-        >
-          Cancel
-        </button>
-      </div>
+          <option value="">select-category</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Shopping">Shopping</option>
+        </select>
+        <div className="flex w-full">
+          <button className="flex justify-center items-center gap-3 mt-3 md:mt-0 w-full rounded-md bg-blue-500 text-white p-2">
+            Add
+          </button>
+          <button
+            className="flex justify-center items-center gap-3 m-auto mt-3 md:mt-0 w-full rounded-md bg-gray-500 text-white p-2 ml-2"
+            onClick={() => setModalIsOpen(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </Modal>
   );
 };

@@ -1,7 +1,7 @@
 import { debounce } from '../../helpers/debounce';
 import { useTodo } from '../../providers/Todo';
 
-const AddTodo: React.FC = () => {
+const Search: React.FC = () => {
   const { search } = useTodo();
 
   const debouncedSearchUpdate = debounce((value: string) => {
@@ -33,4 +33,4 @@ const AddTodo: React.FC = () => {
   );
 };
 
-export default AddTodo;
+export default Search;
