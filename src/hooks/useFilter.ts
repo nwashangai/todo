@@ -1,18 +1,29 @@
 import { useState, useMemo } from 'react';
+import { NewTodo } from '../providers/Todo/types';
 
-const useFilter = (todos: string[], searchTerm: string): string[] => {
-  const [filteredTodos, setFilteredTodos] = useState<string[]>(todos);
+export type FilterOptions = {
+  searchTerm: string;
+  category: string;
+};
+
+const useFilter = (
+  todos: NewTodo[],
+  filterOptions: FilterOptions
+): NewTodo[] => {
+  const [filteredTodos, setFilteredTodos] = useState<NewTodo[]>(todos);
 
   useMemo(() => {
-    if (!searchTerm) {
-      setFilteredTodos(todos);
-    } else {
-      const filtered = todos.filter((todo) =>
-        todo.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredTodos(filtered);
-    }
-  }, [searchTerm, todos]);
+    const filtered = todos.filter(
+      (todo) =>
+        todo.value
+          .toLowerCase()
+          .includes(filterOptions.searchTerm.toLowerCase()) &&
+        todo.category
+          .toLowerCase()
+          .includes(filterOptions.category.toLowerCase())
+    );
+    setFilteredTodos(filtered);
+  }, [filterOptions, todos]);
 
   return filteredTodos;
 };

@@ -1,9 +1,11 @@
+import { NewTodo } from '../../providers/Todo/types';
+
 export interface TodoItemProps {
-  todo: string;
+  todo: NewTodo;
   onRemove: () => void;
 }
 
 export interface TodoListProps {
-  todos: string[];
-  removeTodo: (index: number) => void;
+  todos: NewTodo[];
+  removeTodo: (id: string) => void;
 }

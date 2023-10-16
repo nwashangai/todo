@@ -1,5 +1,7 @@
+import { NewTodo } from '../../providers/Todo/types';
+
 export interface AddTodoProps {
-  addTodo: (newTodo: string) => void;
+  addTodo: (newTodo: NewTodo) => void;
   modalIsOpen: boolean;
   setModalIsOpen: (isOpen: boolean) => void;
 }

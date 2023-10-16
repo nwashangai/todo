@@ -9,7 +9,7 @@ const AddTodo: React.FC = () => {
   }, 300);
 
   return (
-    <div className="relative flex mb-4">
+    <div className="relative w-full flex mb-4 grow">
       <input
         type="text"
         className="w-full pl-10 pr-4 py-2 border rounded-lg outline-none"

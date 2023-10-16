@@ -4,12 +4,12 @@ import useClipboard from '../../hooks/useClipboard';
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove }) => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { copyText } = useClipboard(todo);
+  const { copyText } = useClipboard(todo.value);
 
   const notify = () => {
     setShowTooltip(true);
 
-    // Hide the tooltip after a few seconds (adjust the time as needed)
+    // Hide the tooltip after a few seconds
     setTimeout(() => {
       setShowTooltip(false);
     }, 2000);
@@ -18,7 +18,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onRemove }) => {
   return (
     <li className="relative flex items-center justify-between p-2 border-b">
       <div className="flex items-center">
-        <span className="text-lg">{todo}</span>
+        <span className="text-lg">{todo.value}</span>
       </div>
       <span>
         <button className="text-gray-500" onClick={() => copyText(notify)}>

@@ -12,7 +12,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, removeTodo }) => {
           <TodoItem
             key={index}
             todo={todo}
-            onRemove={() => removeTodo(index)}
+            onRemove={() => removeTodo(todo.id)}
           />
         ))
       )}

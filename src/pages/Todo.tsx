@@ -3,6 +3,7 @@ import TodoList from '../components/TodoList';
 import AddTodoModal from '../components/AddTodo';
 import { useTodo } from '../providers/Todo';
 import Search from '../components/Search';
+import Filter from '../components/Filter';
 
 const TodoPage: React.FC = () => {
   const { todos, addTodo, removeTodo, modalIsOpen, setModalIsOpen } = useTodo();
@@ -30,7 +31,11 @@ const TodoPage: React.FC = () => {
           </svg>
         </button>
       </div>
-      <Search />
+      <div className="flex flex-col items-baseline gap-3 items-center md:flex-row justify-between w-full mb-4">
+        <Filter />
+        <Search />
+      </div>
+
       <TodoList todos={todos} removeTodo={removeTodo} />
       <AddTodoModal
         addTodo={addTodo}
